@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>๊User</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <link href="assetsA/datatables/media/css/jquery.dataTables.css" rel="stylesheet">
+    <script src="assetsA/datatables/media/js/jquery.js"></script>
+    <script src="assetsA/datatables/media/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">สมาชิก</span>
+
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="main.html" id="add-data">Main</a>
+                <a class="mdl-navigation__link" href="index.html" id="sign-out">Logout</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content" style="padding-top: 60px;" align="center">
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:40%;" id="ex-table">
+                    <thead>
+                        <tr>
+                            <!-- <th class="mdl-data-table__cell--non-numeric"> ID </th> -->
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                            <th>E-mail</th>
+                            <th>Type</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ex-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase.js"></script>
+    <script src="FirebaseConfig.js"></script>
+    <script>
+
+        var database = firebase.database();
+        database.ref("users/").once('value', function (snapshot) {
+
+
+            const table = document.getElementById("ex-table-body");
+            let content = '';
+            var afg = [];
+            var Afk = [];
+
+            snapshot.forEach(function (data) {
+                const value = data.val()
+                var nameCol = value.firstname;
+                var addressCol = value.lastname;
+                var phonenumberCol = value.phone;
+                var statusCol = value.address;
+                var latitudeCol = value.email;
+                var longitudeCol = value.type;
+                var button = "<a href=\"deleteusers.html?id=" + data.key + "\" class=\"mdl-button mdl-js-button mdl-button--raised\">Delete</a>"
+                afg.push([nameCol, addressCol, phonenumberCol, statusCol, latitudeCol, longitudeCol, button])
+                const row = table.insertRow()
+
+                // // Col name
+                // const nameCol = row.insertCell(0)
+                // nameCol.innerHTML = value.firstname
+
+                // const addressCol = row.insertCell(1)
+                // addressCol.innerHTML = value.lastname
+
+                // const phonenumberCol = row.insertCell(2)
+                // phonenumberCol.innerHTML = value.phone
+
+                // const statusCol = row.insertCell(3)
+                // statusCol.innerHTML = value.address
+
+                // const latitudeCol = row.insertCell(4)
+                // latitudeCol.innerHTML = value.email
+
+                // const longitudeCol = row.insertCell(5)
+                // longitudeCol.innerHTML = value.type
+
+                // const buttonCol2 = row.insertCell(6)
+                // buttonCol2.innerHTML = "<a href=\"deleteusers.html?id=" + data.key + "\" class=\"mdl-button mdl-js-button mdl-button--raised\">Delete</a>"
+            })
+            $('#ex-table').DataTable({
+                data: afg,
+
+            });
+        })
+
+
+
+    </script>
+</body>
+
+</html>

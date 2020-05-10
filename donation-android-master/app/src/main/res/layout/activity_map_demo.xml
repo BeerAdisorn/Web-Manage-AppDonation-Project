@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MapDemoActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_above="@+id/editTextAdress"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="33dp"
+            android:hint="Name" />
+
+        <EditText
+            android:id="@+id/editTextAdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_above="@+id/editTextPhonenumber"
+            android:layout_marginBottom="33dp"
+            android:hint="Adress" />
+
+        <EditText
+            android:id="@+id/editTextPhonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_above="@+id/editTextLatitude"
+            android:layout_marginBottom="33dp"
+            android:hint="Phonenumber" />
+
+        <EditText
+            android:id="@+id/editTextLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_above="@+id/editTextLongitude"
+            android:layout_marginBottom="33dp"
+            android:hint="Latitude" />
+
+        <EditText
+            android:id="@+id/editTextLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bg1"
+            android:layout_marginBottom="30dp"
+            android:hint="Longtitude" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bg1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/btnsave"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:text="Category :"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/btnsave"
+                android:layout_toEndOf="@+id/bg1"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center"></Spinner>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnsave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnproceed"
+            android:layout_marginBottom="30dp"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/btnproceed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginBottom="60dp"
+            android:text="Proceed" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

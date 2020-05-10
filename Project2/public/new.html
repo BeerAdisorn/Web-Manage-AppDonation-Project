@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">เพิ่มข่าวกิจกรรมการบริจาค</span>
+
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="main.html">main</a>
+                <a class="mdl-navigation__link" href="logout.html" id="sign-out">Logout</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content" style="padding-top: 60px;" align="center">
+                <!-- Your content goes here -->
+                <h4>เพิ่มข่าวกิจกรรมการบริจาค</h4>
+                <form onsubmit="return false">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Segments</th>
+                                <th>
+                                    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="♥">account_box
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">หัวข้อข่าว</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="name" id="topic">
+                                        <label class="mdl-textfield__label" for=name></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">รายละเอียดกิจกรรม</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <textarea class="mdl-textfield__input" type="text" rows="5"
+                                            id="detail"></textarea>
+                                        <label class="mdl-textfield__label" for="detail"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">วันที่ลงข่าว</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="date" id="date">
+                                        <label class="mdl-textfield__label" for=name></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">อัพโหลดรูปภาพ :</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <progress class="mdl-textfield__input" value="0" max="100"
+                                            id="uploader">0%</progress>
+                                        <input class="mdl-textfield__input" type="file" value="upload" id="fileButton">
+                                        <!-- <input class="mdl-textfield__input" type="latitude" id="latitude">
+                                        <label class="mdl-textfield__label" for=latitude>latitude...</label> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                        onclick="save_user();">
+                                        Submit
+                                    </button>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase.js"></script>
+                <script src="FirebaseConfig.js"></script>
+
+                <script>
+                    // Get elements
+                    var uploader = document.getElementById('uploader');
+                    var fileButton = document.getElementById('fileButton');
+
+                    var topicA = document.getElementById('topic');
+                    var detailA = document.getElementById('detail');
+                    var dateA = document.getElementById('date');
+
+                    const databaseRef = firebase.database().ref("/")
+                    const newsRef = databaseRef.child("/News");
+
+
+
+                    function save_user() {
+
+                        var file = fileButton.files[0]
+                        var storageRef = firebase.storage().ref('sweet_gifs/' + file.name);
+                        var task = storageRef.put(file);
+
+                        task.on('state_changed',
+
+                            function progress(snapshot) {
+                                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                uploader.value = percentage;
+                                console.log(percentage)
+                            },
+
+                            function error(err) {
+
+                            },
+
+                            function complete() {
+
+                                task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                                    console.log('File available at', downloadURL);
+
+                                    const newPlaceKey = newsRef.push().key
+
+                                    newsRef.child(newPlaceKey).set({
+                                        topic: topicA.value,
+                                        detail: detailA.value,
+                                        date: dateA.value,
+                                        uploader: downloadURL,
+
+                                    }, function (error) {
+                                        if (error) {
+                                            alert("Error ")
+                                        } else {
+                                            alert("Success")
+                                            location.reload();
+                                        }
+                                    });
+
+                                });
+
+                                // console.log("hello")
+
+
+
+                            }
+
+                        );
+
+                    }
+
+
+
+
+
+
+                    // }
+                    // const selectca = document.getElementById('category');
+
+
+                    // var database = firebase.database();
+                    // database.ref("Category/").once('value', function (snapshot) {
+
+                    //     snapshot.forEach(function (data) {
+                    //         console.log(data.val())
+
+                    //         const option = document.createElement("option");
+                    //         option.text = data.val().namecategory;
+                    //         selectca.add(option);
+
+                    //     })
+                    // })
+
+                    // const databaseRef = firebase.database().ref("/")
+                    // const categoryRef = databaseRef.child("/Place");
+                    // // const categoryRef = placeRef.child("category_id");2
+
+                    // function save_user() {
+                    //     var categoryP = document.getElementById('category').value;
+                    //     var nameP = document.getElementById('name').value;
+                    //     var addressP = document.getElementById('address').value;
+                    //     var latitudeP = document.getElementById('latitude').value;
+                    //     var longitudeP = document.getElementById('longitude').value;
+                    //     var phonenumberP = document.getElementById('phonenumber').value;
+                    //     var statusP = document.getElementById('switch-1').checked;
+
+                    //     const newPlaceKey = categoryRef.push().key
+
+                    //     categoryRef.child(newPlaceKey).set({
+                    //         category: categoryP,
+                    //         name: nameP,
+                    //         address: addressP,
+                    //         latitude: latitudeP,
+                    //         longitude: longitudeP,
+                    //         phonenumber: phonenumberP,
+                    //         status: statusP
+                    //     }, function (error) {
+                    //         if (error) {
+                    //             alert("Error ")
+                    //         } else {
+                    //             alert("Success")
+                    //             location.reload();
+                    //         }
+                    //     });
+
+                    // }
+                </script>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

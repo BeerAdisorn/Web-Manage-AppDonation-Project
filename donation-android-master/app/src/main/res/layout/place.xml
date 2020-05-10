@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_recyclerview"
+        android:orientation="vertical"
+
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/rName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <RatingBar
+                android:id="@+id/pop_ratingbar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:isIndicator="true"
+                android:outlineAmbientShadowColor="@color/back"
+                android:numStars="1"
+                android:rating="1"
+                android:stepSize="1" />
+            <TextView
+                android:id="@+id/rAvg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="4.4"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                android:text="("/>
+
+            <TextView
+                android:id="@+id/rNumberReview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:textSize="14sp"
+                android:text="10"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:textSize="14sp"
+                android:text="รีวิว)"/>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="5dp"
+            android:background="#000" />
+
+        <TextView
+            android:id="@+id/rAdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Adress"
+            android:textColor="#000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/rPhonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phonenumber"
+            android:textColor="#000"
+            android:textSize="0dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">เพิ่มสถานที่บริจาค</span>
+
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="main.html">main</a>
+                <a class="mdl-navigation__link" href="logout.html" id="sign-out">Logout</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content" style="padding-top: 60px;" align="center">
+                <!-- Your content goes here -->
+                <h4>สถานที่บริจาค</h4>
+                <form onsubmit="return false">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Segments</th>
+                                <th>
+                                    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="♥">account_box
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">สถานที่บริจาค</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="name" id="name">
+                                        <label class="mdl-textfield__label" for=name></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">ที่อยู่สถานที่</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <textarea class="mdl-textfield__input" type="text" rows="5"
+                                            id="address"></textarea>
+                                        <label class="mdl-textfield__label" for="address"></label>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Latitude</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="latitude" id="latitude">
+                                        <label class="mdl-textfield__label" for=latitude></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Longitude</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="longitude" id="longitude">
+                                        <label class="mdl-textfield__label" for=longitude></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">เบอร์โทรศัพท์</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="phonenumber" id="phonenumber">
+                                        <label class="mdl-textfield__label" for=phonenumber></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">สถานะสถานที่บริจาค</td>
+                                <td>
+
+                                    <label id="check" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                        <input id="MdlCheckBox" type="checkbox" class="mdl-checkbox__input" value='0' />
+                                        <span class="mdl-checkbox__label">ทำเครื่องหมายเพื่อเปิดใช้งาน</span>
+                                    </label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                        onclick="update();">
+                                        Update
+                                    </button>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase.js"></script>
+                <script src="FirebaseConfig.js"></script>
+
+                <script>
+                    const nameC = document.getElementById('name')
+                    const addressC = document.getElementById('address')
+                    const latitudeC = document.getElementById('latitude')
+                    const longitudeC = document.getElementById('longitude')
+                    const phonenumberC = document.getElementById('phonenumber')
+                    const statusC = document.getElementById('check')
+                    const MdlCheckBox = document.getElementById('MdlCheckBox')
+                    var searchParams = new URLSearchParams(window.location.search);
+
+                    var ID = searchParams.get("id")
+
+                    var startCountRef = firebase.database().ref('Place/' + ID);
+                    startCountRef.on('value', function (snapshot) {
+
+                        const data = snapshot.val()
+                        console.log(data)
+
+                        nameC.value = data.name
+                        addressC.value = data.address
+                        latitudeC.value = data.latitude
+                        longitudeC.value = data.longitude
+                        phonenumberC.value = data.phonenumber
+
+                        if (data.status) {
+                            statusC.MaterialCheckbox.check()
+                        } else {
+                            statusC.MaterialCheckbox.uncheck()
+                        }
+
+                    })
+
+                    function update() {
+                        startCountRef.update({ "name": nameC.value, "address": addressC.value, "latitude": latitudeC.value, "longitude": longitudeC.value, "phonenumber": phonenumberC.value, "status": $('#check').is('.is-checked') })
+
+                        alert('Update !! เรียบร้อย กลับไปตรวจสอบความถูกต้องที่ Table ')
+                    }
+                </script>
+                </script>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

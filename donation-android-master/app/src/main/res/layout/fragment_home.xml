@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit"
+            android:gravity="center|bottom"
+            android:text="หมวดหมู่"
+            android:textSize="30sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.2dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="195dp"
+            android:layout_marginRight="175dp"
+            android:background="#000" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_wat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="420dp"
+        android:text="วัดหรือศาสนาสถาน"
+        android:textColor="#000"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/text_hospital"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="420dp"
+        android:text="สถานสงเคราะห์"
+        android:textColor="#000"
+        android:textSize="18dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="250dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_wat"
+            android:layout_width="10dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_circle_wat"
+            android:drawablePadding="1dp"
+            android:gravity="center|bottom"
+            android:src="@drawable/icon_palace"
+            android:text="วัด" />
+
+        <ImageButton
+            android:id="@+id/btn_hospital"
+            android:layout_width="10dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_circle_hopital"
+            android:gravity="center|bottom"
+            android:src="@drawable/icon_homes2"
+            android:text="สงเคราะห์" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_victim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="673dp"
+        android:text="ครอบครัวผู้ด้อยโอกาส"
+        android:textColor="#000"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/text_foundation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="305dp"
+        android:layout_marginTop="673dp"
+        android:text="มูลนิธิต่างๆ"
+        android:textColor="#000"
+        android:textSize="18dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_victim"
+            android:layout_width="10dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_circle_victim"
+            android:gravity="center|bottom"
+            android:src="@drawable/icons_wheelchair3"
+            android:text="ผู้ประสบอุทกภัย" />
+
+        <ImageButton
+            android:id="@+id/btn_foundation"
+            android:layout_width="10dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_circle_foundation"
+            android:gravity="center|bottom"
+            android:src="@drawable/icon_foundation"
+            android:text="มูลนิธิ" />
+    </LinearLayout>
+
+</RelativeLayout>

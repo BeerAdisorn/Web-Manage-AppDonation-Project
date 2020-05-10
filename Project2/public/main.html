@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <style>
+        /* .black {
+            background: url('./wallpaper/12345.jpg')
+        } */
+
+        .demo-card-wide.mdl-card {
+            width: 512px;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+
+        .demo-card-wide>.mdl-card__title {
+            color: #fff;
+            height: 176px;
+            background: url('./wallpaper/1234.jpg') center / cover;
+        }
+
+        .demo-card-wide>.mdl-card__menu {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body class="black">
+
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">จัดการข้อมูล</span>
+
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="#" id="sign-out" onclick="logout()">Logout</a>
+
+            </nav>
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Table Place</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        ตารางสถานที่บริจาคมีไว้จัดการฐานข้อมูลเกี่ยวกับข้อมูลสถานที่บริจาค
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            href="mainplace.html">
+                            Table Place
+                        </a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="add.html">
+                            Add place
+                        </a>
+                    </div>
+                </div>
+
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Table Category</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        ตารางประเภทสถานที่มีไว้จัดการฐานข้อมูลเกี่ยวกับข้อมูลประเภทสถานที่q
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            href="maincategory.html">
+                            Table category
+                        </a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            href="addcategory.html">
+                            Add category
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Table Event</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        ตารางกิจกรรมการบริจาคมีไว้จัดการฐานข้อมูลเกี่ยวกับข้อมูลกิจกรรมการบริจาค
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            href="mainevent.html">
+                            Table event
+                        </a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            href="addevent.html">
+                            Add event
+                        </a>
+                    </div>
+                </div>
+
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Table User</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        ตารางข้อมูลสมาชิกผู้ใช้งานมีไว้จัดการฐานข้อมูลเกี่ยวกับข้อมูลสมาชิกผู้ใช้งาน
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            href="mainusers.html">
+                            Table users
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Table New</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    ตารางกิจกรรมการบริจาคมีไว้จัดการฐานข้อมูลเกี่ยวกับข้อมูลกิจกรรมการบริจาค
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                        href="mainnew.html">
+                        Table New
+                    </a>
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                        href="new.html">
+                        Add New
+                    </a>
+                </div>
+            </div>
+
+        <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase.js"></script>
+        <script src="FirebaseConfig.js"></script>
+        <script>
+            function logout() {
+                firebase.auth().signOut().then(function () {
+                    location.replace("index.html");
+                });
+            }
+        </script>
+</body>
+
+</html>

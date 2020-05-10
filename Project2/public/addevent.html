@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">เพิ่ม Event</span>
+
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="main.html">main</a>
+                <a class="mdl-navigation__link" href="logout.html" id="sign-out">Logout</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content" style="padding-top: 60px;" align="center">
+                <!-- Your content goes here -->
+                <h4>กิจกรรม</h4>
+                <form onsubmit="return false">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Segments</th>
+                                <th>
+                                    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="♥">account_box
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">สถานที่จัดกิจกรรม</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <select class="mdl-textfield__input" type="place" id="place">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">ชื่อกิจกรรม</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="nameevent" id="nameevent">
+                                        <label class="mdl-textfield__label" for=nameevent>name...</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">วัน / เดือน / ปี</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="datetime-local" id="dt">
+                                        <label class="mdl-textfield__label" for=dt></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">รายละเอียดกิจกรรม</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <textarea class="mdl-textfield__input" type="text" rows="5"
+                                            id="detail"></textarea>
+                                        <label class="mdl-textfield__label" for="detail">...</label>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                        onclick="save_user();">
+                                        Submit
+                                    </button>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase.js"></script>
+                <script src="FirebaseConfig.js"></script>
+
+                <script>
+                    const placeca = document.getElementById('place');
+
+
+                    var database = firebase.database();
+                    database.ref("Place/").once('value', function (snapshot) {
+
+                        snapshot.forEach(function (data) {
+                            // console.log (data.key)
+                            const option = document.createElement("option");
+                            option.text = data.val().name;
+                            option.value = data.key;
+                            placeca.add(option);
+
+                        })
+                    })
+
+                    const databaseRef = firebase.database().ref("/")
+                    const eventRef = databaseRef.child("/Event");
+
+                    function save_user() {
+                        const placeRef = eventRef.child(placeca.value);
+
+                        var nameeventP = document.getElementById('nameevent').value;
+                        var dtP = document.getElementById('dt').value;
+                        var detailP = document.getElementById('detail').value;
+
+                        const newPlaceKey = placeRef.push().key
+
+                        placeRef.child(newPlaceKey).set({
+                            nameevent: nameeventP,
+                            dt: dtP,
+                            detail: detailP,
+
+                        }, function (error) {
+                            if (error) {
+                                alert("Error ")
+                            } else {
+                                alert("Success")
+                                location.reload();
+                            }
+                        });
+
+                    }
+                </script>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

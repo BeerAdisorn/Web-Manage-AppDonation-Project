@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">เพิ่มข่าวกิจกรรมการบริจาค</span>
+
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="main.html">main</a>
+                <a class="mdl-navigation__link" href="logout.html" id="sign-out">Logout</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content" style="padding-top: 60px;" align="center">
+                <!-- Your content goes here -->
+                <h4>สถานที่บริจาค</h4>
+                <form onsubmit="return false">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Segments</th>
+                                <th>
+                                    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="♥">account_box
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">หัวข้อข่าว</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="name" id="topic">
+                                        <label class="mdl-textfield__label" for=name></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">รายละเอียดกิจกรรม</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <textarea class="mdl-textfield__input" type="text" rows="5"
+                                            id="detail"></textarea>
+                                        <label class="mdl-textfield__label" for="detail"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">วันที่ลงข่าว</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="date" id="date">
+                                        <label class="mdl-textfield__label" for=name></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td class="mdl-data-table__cell--non-numeric">อัพโหลดรูปภาพ :</td>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <progress class="mdl-textfield__input" value="0" max="100"
+                                            id="uploader">0%</progress>
+                                        <input class="mdl-textfield__input" type="file" value="upload" id="fileButton">
+                                    </div>
+                                </td>
+                            </tr> -->
+                            <tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                        onclick="update();">
+                                        Submit
+                                    </button>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase.js"></script>
+                <script src="FirebaseConfig.js"></script>
+
+                <script>
+                    // Get elements
+                    // var uploader = document.getElementById('uploader');
+                    // var fileButton = document.getElementById('fileButton');
+
+                    var topicA = document.getElementById('topic');
+                    var detailA = document.getElementById('detail');
+                    var dateA = document.getElementById('date');
+                    var searchParams = new URLSearchParams(window.location.search);
+
+                    var ID = searchParams.get("id")
+
+                    var startCountRef = firebase.database().ref('News/' + ID);
+                    startCountRef.on('value', function (snapshot) {
+
+                        const data = snapshot.val()
+                        console.log(data)
+
+                        topicA.value = data.topic
+                        dateA.value = data.date
+                        detailA.value = data.detail
+
+                    })
+
+                    function update() {
+                        startCountRef.update({ "topic": topicA.value, "date": dateA.value, "detail": detailA.value })
+
+                        alert('Update !! เรียบร้อย กลับไปตรวจสอบความถูกต้องที่ Table ')
+                    }
+                </script>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

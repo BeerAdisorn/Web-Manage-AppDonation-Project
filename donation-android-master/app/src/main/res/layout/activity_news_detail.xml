@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewsDetailActivity">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nTopic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:padding="5dp"
+                android:text="Topic"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="วันที่"
+                    android:layout_weight="12"
+                    android:gravity="right"
+                    android:textColor="#000"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/nDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="5dp"
+                    android:text="Date"
+                    android:textColor="#000"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+<!--            <View-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="1.2dp"-->
+<!--                android:layout_marginLeft="5dp"-->
+<!--                android:layout_marginRight="5dp"-->
+<!--                android:background="#000" />-->
+
+            <ImageView
+                android:id="@+id/nUploader"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_donation" />
+
+            <TextView
+                android:id="@+id/nDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="5dp"
+                android:text="Detail"
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="รายละเอียดข่าว"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="0dp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="รายงานข่าววันที่"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="right"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="18dp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/nDate"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:layout_weight="1.2"-->
+<!--                    android:gravity="left"-->
+<!--                    android:layout_gravity="bottom"-->
+<!--                    android:text="Date"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="18dp" />-->
+
+<!--            </LinearLayout>-->
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

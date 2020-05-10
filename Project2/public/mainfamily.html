@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Place</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">สถานที่</span>
+
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="add.html" id="add-data">Add Place</a>
+                <a class="mdl-navigation__link" href="main.html" id="add-data">Main</a>
+                <a class="mdl-navigation__link" href="index.html" id="sign-out">Logout</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content" style="padding-top: 60px;" align="center">
+                <!-- Your content goes here -->
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="mainsum()">
+                    ทั้งหมด
+                </button>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="mainwat()">
+                    วัดหรือศาสนาสถาน
+                </button>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="homehelp()">
+                    สถานสงเคราะห์
+                </button>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="fund()">
+                    มูลนิธิต่าง ๆ
+                </button>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="family()">
+                    ครอบครัวผู้ด้อยโอกาสและผู้ประสบอุทกภัย
+                </button>
+
+                <br>
+
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:40%;" id="ex-table">
+                    <thead>
+                        <tr>
+                            <!-- <th class="mdl-data-table__cell--non-numeric"> ID </th> -->
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phonenumber</th>
+                            <th>Status</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ex-table-body">
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase.js"></script>
+    <script src="FirebaseConfig.js"></script>
+    <script>
+
+        function mainsum() {
+            return location.replace("mainplace.html")
+        }
+
+        function mainwat() {
+            return location.replace("mainplacewat.html")
+        }
+
+        function homehelp() {
+            return location.replace("mainhomehelp.html")
+        }
+
+        function fund() {
+            return location.replace("mainfund.html")
+        }
+        function family() {
+            return location.replace("mainfamily.html")
+        }
+
+        var database = firebase.database();
+
+        database.ref("Place/").once('value', function (snapshot) {
+
+            const table = document.getElementById("ex-table-body");
+            let content = '';
+
+
+
+            snapshot.forEach(function (data) {
+
+                const value = data.val()
+
+                if(value.category!="ครอบครัวผู้ด้อยโอกาสและผู้ประสบอุทกภัย")
+                return
+
+                const row = table.insertRow()
+
+                // Col name
+                const nameCol = row.insertCell(0)
+                nameCol.innerHTML = value.name
+
+                const addressCol = row.insertCell(1)
+                addressCol.innerHTML = value.address
+
+                const phonenumberCol = row.insertCell(2)
+                phonenumberCol.innerHTML = value.phonenumber
+
+                const statusCol = row.insertCell(3)
+                statusCol.innerHTML = value.status
+
+                const latitudeCol = row.insertCell(4)
+                latitudeCol.innerHTML = value.latitude
+
+                const longitudeCol = row.insertCell(5)
+                longitudeCol.innerHTML = value.longitude
+
+                const buttonCol = row.insertCell(6)
+                buttonCol.innerHTML = "<a href=\"edit.html?id=" + data.key + "\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-button--accent\">Edit</a>"
+            
+                const buttonCol2 = row.insertCell(7)
+                buttonCol2.innerHTML = "<a href=\"deleteplace.html?id=" +data.key + "\" class=\"mdl-button mdl-js-button mdl-button--raised\">Delete</a>"
+
+            })
+        })
+
+
+
+    </script>
+</body>
+
+</html>
